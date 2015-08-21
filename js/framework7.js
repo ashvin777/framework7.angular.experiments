@@ -2188,7 +2188,7 @@
         
         app.router._load = function (view, options) {
             options = options || {};
-
+            
             var url = options.url,
                 content = options.content, //initial content
                 t7_rendered = {content: options.content},
