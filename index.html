@@ -79,9 +79,7 @@
                               --><span class="id" ng-show="node.id != ''">#{{ node.id }}</span><!--
                               --><span class="classname" ng-show="node.className != ''">{{$parent.mergeClass( node.className) }}</span>
                               
-                              <span>
-                                 <span>{{node.childNodes[0].data}}</span>
-                              </span>
+                               <div class="label"> {{ $parent.getLabel(node.generator) }} </div>
 
                             </div>
                             <ul ng-if="node.childNodes" >

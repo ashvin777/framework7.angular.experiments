@@ -70,12 +70,25 @@ angular.module("RootCtrl", [])
             var id = $(el).data("id");
             // console.log(event);
             if( id != "" ){
-                $(".mobile-view").find(".hover-element").removeClass("hover-element");
-                $(".mobile-view").find("[data-id="+id+"]").addClass("hover-element");
+                $(".mobile-view").find("._hover").removeClass("_hover");
+                $(".mobile-view").find("[data-id="+id+"]").addClass("_hover");
 
-                console.log( $(".mobile-view").find("[data-id="+id+"]") );
+                //console.log( $(".mobile-view").find("[data-id="+id+"]") );
             }
-            $(".center-view").find(".hover-element").removeClass("hover-element");
+            $(".center-view").find("._hover").removeClass("_hover");
+        }
+
+        $scope.getLabel = function(id){
+            try{
+                if( id != "" ){
+                    var txt = $(".mobile-view").find("[data-id="+id+"]")[0].childNodes[0].data;
+                    //console.log(txt);
+                    return txt;
+                }
+            } catch(e){
+                return "";
+            }
+
         }
 
         $scope.selectElement = function(index){
