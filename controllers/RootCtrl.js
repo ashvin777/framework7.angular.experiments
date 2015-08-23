@@ -3,7 +3,12 @@ angular.module("RootCtrl", [])
 .controller("RootCtrl", ["$rootScope", "$scope","$compile",
     function($rootScope, $scope, $compile) {
 
-        var mobileView = $(".mobile-view");
+        $scope.nodes = $(".mobile-view");
+        var classNameCount = 0;
+        $scope.nodes.find("*").each(function(index,el) {
+            $(el).attr("data-id",classNameCount);
+            el["generator"] = classNameCount++;
+        });
         $rootScope.selectedIndex = 0;
         $rootScope.components = [{
             "label": "+ View",
@@ -32,6 +37,45 @@ angular.module("RootCtrl", [])
                 default:
                     break;
             }
+        }
+
+        $scope.showNode = function(e){
+            var el = $(e.currentTarget);
+
+            //console.log( $(el) );
+            $(el).next().toggle(100);
+
+            console.log( el );
+            $(el).toggleClass("close");
+        }
+
+        $scope.mergeClass = function(classes){
+            var merged = "";
+            if(classes){
+                classes = classes.split(" ");
+                if( classes.length > 0){
+                    //console.log(classes);
+                    classes.forEach(function(v){
+                        merged += "."+v;
+                    });
+                    return merged;
+                } else {
+                    return;
+                }
+            }
+        }
+
+        $scope.onNodeHover = function(event){
+            var el = event.currentTarget;
+            var id = $(el).data("id");
+            // console.log(event);
+            if( id != "" ){
+                $(".mobile-view").find(".hover-element").removeClass("hover-element");
+                $(".mobile-view").find("[data-id="+id+"]").addClass("hover-element");
+
+                console.log( $(".mobile-view").find("[data-id="+id+"]") );
+            }
+            $(".center-view").find(".hover-element").removeClass("hover-element");
         }
 
         $scope.selectElement = function(index){
@@ -71,14 +115,16 @@ angular.module("RootCtrl", [])
         }
 
         function generatePageTree(){
-        	$rootScope.pageTree= [];
-        	$(".mobile-view").find("*").each(function(index,value){
-        		value.class = "";
-        		value.classList.forEach(function(v){
-        			value.class += "."+v;
-        		});
-        		$rootScope.pageTree.push(value);
-        	});
+        	// $rootScope.pageTree= [];
+        	// $(".mobile-view").find("*").each(function(index,value){
+        	// 	value.class = "";
+        	// 	value.classList.forEach(function(v){
+        	// 		value.class += "."+v;
+        	// 	});
+        	// 	$rootScope.pageTree.push(value);
+        	// });
+
+            console.log($rootScope.nodes);
         }
         generatePageTree();
 

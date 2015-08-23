@@ -18,6 +18,53 @@
 .mobile-view .page{
 	background: transparent;
 }
+
 .item-link.active{
 	background: gray;
+}
+ul{
+	 display: block;
+    list-style-type: none;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 7px;
+    font-size: 12px;
+    position: relative;;
+}
+._node{
+  position: relative;
+  font-family: monospace;;
+  cursor: pointer;;
+}
+._node:before{
+  content : "\25be";
+  position: absolute;
+  top:0px;
+  left:-10px;
+}
+._node.close:before{
+  content : "\25b8";
+  position: absolute;
+  top:0px;
+  left:-10px;
+}
+._node.noNode:before{
+  content : "";
+}
+._node .localname{
+  color:#311B92;
+}
+._node .classname{
+  color: #D86204;
+}
+._node .id{
+  color: green;
+  font-weight: bold;
+}
+
+.hover-element{
+  outline: 2px solid red;
+  opacity: 0.9;
 }
